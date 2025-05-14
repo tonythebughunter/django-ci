@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid m-2">
+    <div class="row">
+        <div class="col-md-6 offset-sm-3">
+            <div class="container-fluid">
+            <div class="card shadow-sm pt-2">
+                <div class="form-icon text-center h3 pt-3"><i class="bi bi-person-circle"></i></div>
+                <h2 class="card-title text-center mb-4">Signup Form</h2>
+                <div class="card-body">
+                    <form method="post" action="/users/register/">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label">Username</label>
+                            <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus required aria-describedby="id_username_helptext" id="id_username">
+                            
+                                <small class="form-text text-muted d-block">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+                            
+                            
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="id_password1" class="form-label">Password</label>
+                            <input type="password" name="password1" autocomplete="new-password" required aria-describedby="id_password1_helptext" id="id_password1">
+                            
+                                <small class="form-text text-muted d-block"><ul>
+                                    <li>Your password can’t be too similar to your other personal information.</li>
+                                    <li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li>
+                                    <li>Your password can’t be entirely numeric.</li>
+                                </ul>
+                            </small>                                                       
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="id_password2" class="form-label">Password</label>
+                            <input type="password" name="password2" autocomplete="new-password" required aria-describedby="id_password2_helptext" id="id_password2">
+                            
+                                <small class="form-text text-muted d-block">Enter the same password as before, for verification.</small>
+                            
+                            
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                        <p>Have an account? <a href="{% url 'users:login' %}">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>       
+        </div>
+    </div>
+</div>
+{% endblock %}

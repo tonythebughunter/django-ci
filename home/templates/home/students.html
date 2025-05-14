@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+ {% for student in students %}
+ <div class="row">
+  <div class="col-md-4">
+  <div class="card mt-5 mb-2 ml-3" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ student.name }}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Fee Balance</h6>
+      <p class="card-text">{{ student.feeBal }}</p>
+    </div>
+  </div>
+  </div>
+</div>
+  {% empty %}
+  <p class="text-center">No Students available</p>
+  {% endfor %}
+{% endblock %}

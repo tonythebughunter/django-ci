@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murunyu High School</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Option 1: Include in HTML -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <style>
+        .navbar {
+            background-color: #003f63; /* Match the blue color */
+        }
+        .navbar-brand img {
+            height: 40px; /* Adjust the height of the logo as needed */
+        }
+        .nav-link {
+            color: white !important;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        .slider-section .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        body, html {
+            height: 100%;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            
+        }
+        main{
+            flex: 1;
+        }
+        .info-section {
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-top: 2px solid #003f63;
+        }
+        .info-section .contact-info, .info-section .quick-links {
+            color: #003f63;
+        }
+        .info-section .contact-info h5, .info-section .quick-links h5 {
+            color: #003f63;
+        }
+        .info-section .social-icons a {
+            margin-right: 10px;
+            color: #003f63;
+        }
+        .info-section .social-icons a:hover {
+            color: #ff9900;
+        }
+        
+    </style>
+</head>
+<body>
+
+        <nav class="navbar navbar-expand-lg w-100 mb-2">
+            <a class="navbar-brand" href="#">
+                <img rel="preload" src="https://raw.githubusercontent.com/tonythebughunter/MurunyuHigh/main/mhs%20logo.png" alt="Murunyu High School Logo">
+            </a>
+            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home:index' %}">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home:index' %}#about">  ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home:index' %}#academics">  ACADEMICS</a>
+                      
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home:students' %}">  STUDENTS</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="{% url 'posts:assignment' %}" class="nav-link"> ASSIGNMENT</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="/users/logout/" method="post">
+                                {% csrf_token %}
+                                <button class="btn nav-link" type="submit">LOGOUT</button>
+                            </form>
+                        </li>
+                    {% else %}                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:register' %}"> REGISTER</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:login' %}"> LOGIN</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 ms-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-facebook"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-twitter"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-instagram"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-youtube"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main class="container">
+            {% block content %}
+            {% endblock %}
+        </main>
+        <div class="info-section d-flex justify-content-around align-items-start row mt-3">
+            <div class="school-info text-center col">
+                <img src="https://github.com/tonythebughunter/MurunyuHigh/raw/main/mhs%20logo.png" alt="Murunyu High School Logo" height="80">
+                <div class="social-icons mt-2 col">
+                    <a href="https://facebook.com"><i class="bi bi-facebook"></i></a>
+                    <a href="https://twitter.com"><i class="bi bi-twitter"></i></a>
+                    <a href="https://instagram.com"><i class="bi bi-instagram"></i></a>
+                    <a href="https://youtube.com"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+            <div class="contact-info col">
+                <h5>Contact Us</h5>
+                <p>P5W5+PCC, Nairobi</p>
+                <p>Phone: 0797677193</p></br>
+            </div>
+            <div class="quick-links col m-2">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="https://medium.com">Blog</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Homework Help</a></li>
+                    <li><a href="{% url 'users:login' %}">Login</a></li>
+                </ul>
+            </div>
+        </div>
+
+    <footer class="bg-warning pt-4 pb-3">
+        <p class="text-center">&copy; 2025 Anthony Mwangi</p>
+    </footer>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
