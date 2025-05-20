@@ -2,3 +2,4 @@ gunicorn
 django
 djangorestframework
 pymysql
+dj_database_url
