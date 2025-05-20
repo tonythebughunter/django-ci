@@ -79,12 +79,10 @@ WSGI_APPLICATION = 'school.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-     }
+    'default': dj_database_url.config(
+        default=os.environ.get('postgresql://django_ci_db_user:pNlwIGd0rrvM1PAoZDC62na4hxygsUTq@dpg-d0m108idbo4c73ccef6g-a/django_ci_db')
+    )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
